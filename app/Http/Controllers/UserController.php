@@ -68,4 +68,19 @@ class UserController extends Controller
     {
         return view('users.edit', compact('user'));
     }
+
+    public function update(User $user)
+    {
+        $data = request()->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required',
+        ]);
+
+        $data['password'] = bcrypt($data['password']);
+
+        $user->update($data);
+
+        return redirect()->route('user.show', $user);
+    }
 }

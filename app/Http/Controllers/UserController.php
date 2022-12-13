@@ -43,6 +43,7 @@ class UserController extends Controller
         return view('users.create', [
             'professions' => Profession::orderBy('title', 'ASC')->get(),
             'skills' => Skill::orderBy('name', 'ASC')->get(),
+            'roles' => trans('users.roles'),
         ]);
     }
 

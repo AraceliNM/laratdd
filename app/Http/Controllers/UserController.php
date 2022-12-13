@@ -62,8 +62,23 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        $user->forceDelete();
+
+        return redirect()->route('users');
+    }
+
+    public function trash(User $user)
+    {
         $user->delete();
 
         return redirect()->route('users');
+    }
+
+    public function trashed()
+    {
+        return view('users.index', [
+            'users' => User::onlyTrashed()->get(),
+            'title' => 'Listado de usuarios en la papelera',
+        ]);
     }
 }

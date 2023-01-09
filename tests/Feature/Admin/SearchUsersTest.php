@@ -140,7 +140,7 @@ class SearchUsersTest extends TestCase
 
         $response = $this->get('usuarios?search=Fire')
             ->assertStatus(200);
-        
+
         $response->assertViewCollection('users')
             ->contains($marlene)
             ->notContains($joel)

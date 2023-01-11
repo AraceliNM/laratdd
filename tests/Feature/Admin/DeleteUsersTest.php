@@ -46,7 +46,6 @@ class DeleteUsersTest extends TestCase
     function it_sends_a_user_to_the_trash()
     {
         $user = factory(User::class)->create();
-        $user->profile()->save(factory(UserProfile::class)->make());
 
         $this->patch('usuarios/' . $user->id . '/papelera')
             ->assertRedirect('usuarios');
